@@ -1,4 +1,4 @@
-# AMARO iOS challenge
+# AMARO Android challenge
 O objetivo do desafio é construir um app de catálogo para alguns dos *best-sellers* da história da [AMARO](https://amaro.com/).
 
 ## Algumas regras
@@ -16,7 +16,9 @@ O objetivo do desafio é construir um app de catálogo para alguns d
  * Tamanhos disponíveis
 * Deve ser possível adicionar produtos ao carrinho do usuário.
 * Deve ser possível verificar quantos e quais produtos do carrinho.
-* Utilizar Swift como linguagem principal.
+* Utilizar Java como linguagem principal.
+* Deve utilizar os guidelines de [material desgin](https://getmdl.io/components/index.html) para os desenhos das distintas areas 
+* Deve Utilizar o [Android-Expresso](https://google.github.io/android-testing-support-library/docs/espresso/) para UITest e   JUnit para testes unitarios
 
 ## Diferenciais
 * Foi moleza? Então permita que os usuários interajam com o carrinho removendo produtos e alterando a quantidade de itens.
@@ -28,4 +30,4 @@ O objetivo do desafio é construir um app de catálogo para alguns d
 ## Critérios de avaliação
 * O código será avaliado considerando: semântica, estruturação, legibilidade, tamanho, entre outros fatores.
 * O histórico do *git* também será avaliado.
-* Estamos buscando um desenvolvedor iOS que saiba montar um *layout*  bonito e que também saiba programar em Swift, por isso aproveite a oportunidade para nos mostrar que você tem conhecimento nas duas áreas.
+* Estamos buscando um desenvolvedor Android que saiba utilizar as guidelines, padrões da google e ao mesmo tempo possua um conhecimento solido em JAVA-Android, por isso aproveite a oportunidade para nos mostrar que você tem conhecimento nessas áreas.
