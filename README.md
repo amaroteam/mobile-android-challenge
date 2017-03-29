@@ -28,6 +28,6 @@ O objetivo do desafio é construir um app de catálogo para alguns d
 * Todos gostamos de código limpo e testável, certo? Então esse é um grande diferencial.
 
 ## Critérios de avaliação
-* O código será avaliado considerando: semântica, estruturação, legibilidade, tamanho, entre outros fatores.
+* O código será avaliado considerando: semântica, estruturação, legibilidade, implementação, entre outros fatores.
 * O histórico do *git* também será avaliado.
 * Estamos buscando um desenvolvedor Android que saiba utilizar as guidelines, padrões da google e ao mesmo tempo, possua um conhecimento solido em Java-Android, por isso aproveite a oportunidade para nos mostrar que você tem conhecimento nessas áreas.
