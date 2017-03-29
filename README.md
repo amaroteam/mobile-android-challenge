@@ -15,7 +15,7 @@ O objetivo do desafio é construir um app de catálogo para alguns d
  * Preço promocional (se houver).
  * Tamanhos disponíveis.
 * Deve ser possível adicionar produtos ao carrinho do usuário.
-* Deve ser possível verificar quantos e quais produtos do carrinho.
+* Deve ser possível verificar quantos e quais produtos foram adicionados no carrinho.
 * Utilizar [Java-Android](https://developer.android.com/about/versions/nougat/android-7.0.html) como linguagem principal.
 * Deve utilizar os guidelines de [material desgin](https://getmdl.io/components/index.html) para os desenhos das distintas areas.
 * Deve Utilizar o [Android-Expresso](https://google.github.io/android-testing-support-library/docs/espresso/) para UITest e [JUnit](https://developer.android.com/studio/test/index.html) para testes unitarios.
