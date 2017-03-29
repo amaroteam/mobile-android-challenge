@@ -8,17 +8,17 @@ O objetivo do desafio é construir um app de catálogo para alguns d
 
 ## Requisitos
 * Para cada item de produto, as seguintes informações devem estar presentes no catálogo:
- * Imagem
- * Nome
- * Preço
- * Status de promoção
- * Preço promocional (se houver)
- * Tamanhos disponíveis
+ * Imagem.
+ * Nome.
+ * Preço.
+ * Status de promoção.
+ * Preço promocional (se houver).
+ * Tamanhos disponíveis.
 * Deve ser possível adicionar produtos ao carrinho do usuário.
 * Deve ser possível verificar quantos e quais produtos do carrinho.
-* Utilizar Java como linguagem principal.
-* Deve utilizar os guidelines de [material desgin](https://getmdl.io/components/index.html) para os desenhos das distintas areas 
-* Deve Utilizar o [Android-Expresso](https://google.github.io/android-testing-support-library/docs/espresso/) para UITest e   JUnit para testes unitarios
+* Utilizar [Java-Android](https://developer.android.com/about/versions/nougat/android-7.0.html) como linguagem principal.
+* Deve utilizar os guidelines de [material desgin](https://getmdl.io/components/index.html) para os desenhos das distintas areas.
+* Deve Utilizar o [Android-Expresso](https://google.github.io/android-testing-support-library/docs/espresso/) para UITest e [JUnit](https://developer.android.com/studio/test/index.html) para testes unitarios.
 
 ## Diferenciais
 * Foi moleza? Então permita que os usuários interajam com o carrinho removendo produtos e alterando a quantidade de itens.
@@ -30,4 +30,4 @@ O objetivo do desafio é construir um app de catálogo para alguns d
 ## Critérios de avaliação
 * O código será avaliado considerando: semântica, estruturação, legibilidade, tamanho, entre outros fatores.
 * O histórico do *git* também será avaliado.
-* Estamos buscando um desenvolvedor Android que saiba utilizar as guidelines, padrões da google e ao mesmo tempo possua um conhecimento solido em JAVA-Android, por isso aproveite a oportunidade para nos mostrar que você tem conhecimento nessas áreas.
+* Estamos buscando um desenvolvedor Android que saiba utilizar as guidelines, padrões da google e ao mesmo tempo, possua um conhecimento solido em Java-Android, por isso aproveite a oportunidade para nos mostrar que você tem conhecimento nessas áreas.
