@@ -17,8 +17,6 @@ O objetivo do desafio é construir um app de catálogo para alguns d
 * Deve ser possível adicionar produtos ao carrinho do usuário.
 * Deve ser possível verificar quantos e quais produtos foram adicionados no carrinho.
 * Utilizar [Java-Android](https://developer.android.com/about/versions/nougat/android-7.0.html) como linguagem principal.
-* Deve utilizar os guidelines de [material desgin](https://getmdl.io/components/index.html) para os desenhos das distintas areas.
-* Deve Utilizar o [Android-Expresso](https://google.github.io/android-testing-support-library/docs/espresso/) para UITest e [JUnit](https://developer.android.com/studio/test/index.html) para testes unitarios.
 
 ## Diferenciais
 * Foi moleza? Então permita que os usuários interajam com o carrinho removendo produtos e alterando a quantidade de itens.
@@ -26,6 +24,9 @@ O objetivo do desafio é construir um app de catálogo para alguns d
 * Achou o teste até aqui fácil? Que tal adicionar um filtro para mostrar só os produtos em promoção (`on_sale`)?
 * Alguns produtos não tem sua grade completa (todos os tamanhos disponíveis). Mostre somente os tamanhos em estoque.
 * Todos gostamos de código limpo e testável, certo? Então esse é um grande diferencial.
+* Deve utilizar os guidelines de [material desgin](https://getmdl.io/components/index.html) para os desenhos das distintas areas.
+* Deve utilizar o [Android-Expresso](https://google.github.io/android-testing-support-library/docs/espresso/) para UITest e [JUnit](https://developer.android.com/studio/test/index.html) para testes unitarios.
+
 
 ## Critérios de avaliação
 * O código será avaliado considerando: semântica, estruturação, legibilidade, implementação, entre outros fatores.
