@@ -11,15 +11,15 @@ Mas não peça para eles resolverem o desafio para você.
 * Logo depois de fazer o fork o tempo do teste começará a contar.
 * O tempo recomendado de duração do teste é preferencialmente de 2 dias.
 * O último commit do repositorio pessoal tem que ter o titulo de *FINISH!*
-* Pode utilizar qualquer bibliotecas de terceiros que você esteja familiarizado.
+* Pode utilizar quaisquer bibliotecas de terceiros que você esteja familiarizado.
 * Utilizar [Java-Android](https://developer.android.com/about/versions/nougat/android-7.0.html) como linguagem principal.
 
 ## Requisitos
-1. Exibir uma lista de produtos em forma de catalogo vertical com as seguintes informações:
+1. Exibir uma lista de produtos em forma de catálogo vertical com as seguintes informações:
     - Imagem.
     - Nome.
     - Preço. 
-2. Cada produto do catalogo deve ser clicável. 
+2. Cada produto do catálogo deve ser clicável. 
 3. Quando o produto for clicado, o usuário deve ser direcionado para uma área, onde serão exibidos os detalhes do produto.
 4. Para cada item de produto que for clicado, as seguintes informações devem estar presentes:
     - Imagem.
@@ -30,7 +30,7 @@ Mas não peça para eles resolverem o desafio para você.
     - Tamanhos disponíveis.
 
 ## Diferenciais
-* Seja criativo e innovador com o layout.
+* Seja criativo e inovador com o layout.
 * Achou o teste até aqui fácil? Que tal adicionar um filtro para mostrar só os produtos em promoção (`on_sale`)?
 * Alguns produtos não tem sua grade completa (todos os tamanhos disponíveis). Mostre somente os tamanhos em estoque.
 * Todos gostamos de código limpo e testável, certo? Então esse é um grande diferencial.
@@ -39,4 +39,4 @@ Mas não peça para eles resolverem o desafio para você.
 ## Critérios de avaliação
 * O código será avaliado considerando: semântica, estruturação, legibilidade, implementação, entre outros fatores.
 * O histórico do *git* também será avaliado.
-* Estamos buscando um desenvolvedor Android que saiba utilizar as guidelines, padrões da Google e ao mesmo tempo, possua um conhecimento solido em Java-Android, por isso aproveite a oportunidade para nos mostrar que você tem conhecimento nessas áreas.
+* Estamos buscando um desenvolvedor Android que saiba utilizar as guidelines, padrões da Google e ao mesmo tempo, possua um conhecimento sólido em Java-Android, por isso aproveite a oportunidade para nos mostrar que você tem conhecimento nessas áreas.
