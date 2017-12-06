@@ -2,8 +2,7 @@
 O objetivo do desafio é construir um app de catálogo para alguns dos *best-sellers* da história da [AMARO](https://amaro.com/).
 
 ## Algumas regras
-* O app não pode ser estático. Ela deve possuir alguma inteligência para exibir todos os produtos dinamicamente.
-* Todos os produtos no serviço [products service](http://www.mocky.io/v2/59b6a65a0f0000e90471257d) devem ser exibidos no catálogo.
+* O app deve consumir o serviço [products service](http://www.mocky.io/v2/59b6a65a0f0000e90471257d) e  todos os produtos devem ser exibidos no catálogo.
 * Para iniciar o teste faça o fork do repositório, e para finalizar nomeie o último commit com  *FINISH!*
 * É permitido utilizar quaisquer bibliotecas que você esteja familiarizado.
 * Utilizar Java como linguagem principal.
