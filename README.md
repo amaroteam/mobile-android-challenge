@@ -5,7 +5,7 @@ O objetivo do desafio é construir um app de catálogo para alguns d
 * O app deve consumir o serviço [products service](http://www.mocky.io/v2/59b6a65a0f0000e90471257d) e  todos os produtos devem ser exibidos no catálogo.
 * Para iniciar o teste faça o fork do repositório, e para finalizar nomeie o último commit com  *FINISH!*
 * É permitido utilizar quaisquer bibliotecas que você esteja familiarizado.
-* Utilizar Java como linguagem principal.
+* Utilize Java como linguagem principal.
 * Se você estiver com dúvidas, busque por referências no Google, ou pergunte para amigos.
 Mas não peça para eles resolverem o desafio para você.
 
