@@ -69,7 +69,7 @@ Mas não peça para eles resolverem o desafio para você.
 ## Requisitos adicionais
 * Alguns produtos não tem sua grade completa (todos os tamanhos disponíveis). Mostre somente os tamanhos em estoque.
 * Adicione um filtro para mostrar só os produtos em promoção (`on_sale`).
-* Adicione uma funcionalidade de ordenção que permite ordenar a list por preço (menor para maior).
+* Adicione uma funcionalidade de ordenção que permite ordenar a lista por preço (menor para maior).
 * Seja criativo e perfeccionista com o layout.
 * Utilize os guidelines de [material design](https://getmdl.io/components/index.html).
  
