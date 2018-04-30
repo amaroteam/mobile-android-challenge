@@ -18,7 +18,7 @@ public class ProductListPresenter extends BasePresenter<ProductListContract.View
 
     @Override
     public void getProductsList() {
-
+//        TODO Call the API using RxJava and Retrofit
     }
 
     @Override

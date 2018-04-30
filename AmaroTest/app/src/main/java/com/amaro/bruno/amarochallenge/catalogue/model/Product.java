@@ -47,6 +47,12 @@ public class Product {
 
     public Product(){}
 
+    public Product(String name, String regularPrice, String image){
+        this.name = name;
+        this.regularPrice = regularPrice;
+        this.image = image;
+    }
+
     public Product(String name, String style, boolean onSale, String regularPrice, List<Size> sizes){
         this.name = name;
         this.style = style;

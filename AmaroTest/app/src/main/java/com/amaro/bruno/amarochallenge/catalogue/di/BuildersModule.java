@@ -9,6 +9,6 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class BuildersModule {
 
     @ContributesAndroidInjector(modules = {ProductsListViewModule.class, ProductsListPresenterModule.class})
-    abstract ProductsListActivity bindToProductsListActivity();
+    abstract ProductsListActivity bindProductsListActivity();
 
 }

@@ -1,0 +1,7 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="header_title">16sp</dimen>
+    <dimen name="card_title">16sp</dimen>
+    <dimen name="card_text">14sp</dimen>
+
+</resources>
