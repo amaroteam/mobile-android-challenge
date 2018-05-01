@@ -43,7 +43,7 @@ public class ProductListPresenterTest {
     public void getProductsBySize(){
         List<Product> products = MockProducts.getMockProducts();
 
-        presenter.getProductsBySize(products, new Size(true, "P", "5723_40130843_0_P"));
+        presenter.getProductsBySize(products, "P");
     }
 
     @Test

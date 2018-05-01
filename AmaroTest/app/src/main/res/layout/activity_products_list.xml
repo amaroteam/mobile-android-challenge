@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_products"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".catalogue.ui.ProductsListActivity">
@@ -24,7 +25,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/tv_number_items"
+                    android:id="@+id/tv_items"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="10dp"
@@ -35,12 +36,13 @@
                     tools:text="15 items"/>
 
                 <LinearLayout
+                    android:id="@+id/linear_wrapper_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:orientation="horizontal"
                     android:layout_alignParentEnd="true">
 
@@ -49,14 +51,20 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:layout_gravity="center_vertical"
-                        android:text="Sort by Price"
-                        android:textSize="@dimen/header_title"
-                        android:textStyle="bold"/>
+                        android:text="@string/price"
+                        android:textSize="@dimen/header_title"/>
 
-                    <Spinner
-                        android:id="@+id/spinner_prices"
+                    <TextView
+                        android:id="@+id/tv_search_price"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:text="@string/all"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/header_title"
+                        android:textStyle="bold"
+                        tools:text="R$ 149,90"/>
 
                 </LinearLayout>
 
@@ -69,16 +77,21 @@
 
         </LinearLayout>
 
-        <GridView
-            android:id="@+id/grid_products"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:numColumns="2"
-            android:verticalSpacing="10dp"
-            android:horizontalSpacing="10dp"
-            android:scrollbars="none"
-            android:layout_below="@+id/linear_filter"/>
+            android:layout_below="@+id/linear_filter">
+            <GridView
+                android:id="@+id/grid_products"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:numColumns="2"
+                android:verticalSpacing="10dp"
+                android:horizontalSpacing="10dp"
+                android:scrollbars="none" />
+        </android.support.v4.widget.SwipeRefreshLayout>
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBar"
@@ -102,7 +115,8 @@
                 <com.miguelcatalan.materialsearchview.MaterialSearchView
                     android:id="@+id/search_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    style="@style/MaterialSearchViewStyle"/>
 
             </RelativeLayout>
 

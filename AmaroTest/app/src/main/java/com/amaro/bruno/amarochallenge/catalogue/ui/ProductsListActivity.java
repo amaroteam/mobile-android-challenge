@@ -1,38 +1,48 @@
 package com.amaro.bruno.amarochallenge.catalogue.ui;
 
-import android.animation.Animator;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.AbsListView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.amaro.bruno.amarochallenge.BaseActivity;
 import com.amaro.bruno.amarochallenge.R;
+import com.amaro.bruno.amarochallenge.catalogue.adapter.ProductItemClickListener;
 import com.amaro.bruno.amarochallenge.catalogue.adapter.ProductsListAdapter;
 import com.amaro.bruno.amarochallenge.catalogue.di.InjectionProductsListAdapter;
 import com.amaro.bruno.amarochallenge.catalogue.extensions.ViewUtils;
+import com.amaro.bruno.amarochallenge.catalogue.listener.IOptionPriceSelectListener;
+import com.amaro.bruno.amarochallenge.catalogue.mock.ProductsMock;
 import com.amaro.bruno.amarochallenge.catalogue.model.Product;
 import com.amaro.bruno.amarochallenge.catalogue.presentation.ProductListContract;
 import com.amaro.bruno.amarochallenge.catalogue.presentation.ProductListPresenter;
+import com.amaro.bruno.amarochallenge.catalogue.use_case.ProductsListFilter;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 
-public class ProductsListActivity extends BaseActivity implements ProductListContract.View {
+public class ProductsListActivity extends BaseActivity implements ProductListContract.View, ProductItemClickListener, IOptionPriceSelectListener{
+
+    @BindView(R.id.coordinator_products)
+    CoordinatorLayout coordinatorLayout;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -40,8 +50,17 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
     @BindView(R.id.search_view)
     MaterialSearchView searchView;
 
+    @BindView(R.id.tv_items)
+    TextView tvItems;
+
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout swipeRefresh;
+
     @BindView(R.id.linear_filter)
     LinearLayout linearFilter;
+
+    @BindView(R.id.tv_search_price)
+    TextView tvSearchPrice;
 
     @BindView(R.id.grid_products)
     GridView gridProducts;
@@ -49,6 +68,9 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
     @Inject
     ProductListPresenter productListPresenter;
 
+    private List<Product> allProducts;
+    private List<Product> filteredProducts;
+    private ProductsListFilter productsFilter;
     private ProductsListAdapter productsAdapter;
     private int myLastVisiblePos;
 
@@ -62,6 +84,7 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
 
         setup();
 
+        productListPresenter.setContext(this);
         productListPresenter.getProductsList();
 
         gridProducts.setAdapter(productsAdapter);
@@ -82,6 +105,12 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
                 myLastVisiblePos = currentFirstVisPos;
             }
         });
+
+        swipeRefresh.setOnRefreshListener(() -> {
+            productListPresenter.getProductsList();
+
+            hideProgress();
+        });
     }
 
     @Override
@@ -98,30 +127,34 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
             ab.setTitle(R.string.app_name);
         }
 
+        tvSearchPrice.setPaintFlags(tvSearchPrice.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         searchView.setVoiceSearch(true);
+        searchView.setHint(getString(R.string.search_product_name));
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.d("Query", query);
+                productsAdapter.getFilter().filter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                productsAdapter.getFilter().filter(newText);
                 return false;
             }
         });
 
-        productsAdapter = InjectionProductsListAdapter.getProductsListAdapter(this,
-                Arrays.asList(
-                        new Product("VESTIDO TRANSPASSE BOW", "R$ 199,90", "https://d3l7rqep7l31az.cloudfront.net/images/products/20002605_615_catalog_1.jpg?1460136912"),
-                        new Product("REGATA ALCINHA FOLK", "R$ 99,90", "https://d3l7rqep7l31az.cloudfront.net/images/products/20002570_002_catalog_1.jpg?1459948578"),
-                        new Product("TOP CROPPED SUEDE", "R$ 129,90", "https://d3l7rqep7l31az.cloudfront.net/images/products/20002575_027_catalog_1.jpg?1459537946"),
-                        new Product("BATA DECOTE FLUID", "R$ 149,90", "https://d3l7rqep7l31az.cloudfront.net/images/products/20002581_614_catalog_1.jpg?1459536611"),
-                        new Product("T-SHIRT LEATHER DULL", "R$ 139,90", ""),
-                        new Product("CAMISA SUEDE SPAN", "R$ 189,90", "https://d3l7rqep7l31az.cloudfront.net/images/products/20002584_035_catalog_1.jpg?1459947139"),
-                        new Product("CALÇA CLASSIC PRINT", "R$ 159,90", "https://d3l7rqep7l31az.cloudfront.net/images/products/20002634_613_catalog_1.jpg?1459548109"),
-                        new Product("REGATA ALCINHA FOLK", "R$ 99,90", "https://d3l7rqep7l31az.cloudfront.net/images/products/20002570_029_catalog_1.jpg?1459948578")));
+        allProducts = new ArrayList<>();
+        filteredProducts = new ArrayList<>();
+        productsFilter = new ProductsListFilter();
+
+        allProducts.addAll(ProductsMock.productList());
+        filteredProducts.addAll(allProducts);
+
+        tvItems.setText(getString(R.string.qty_items, allProducts.size()));
+
+        productsAdapter = InjectionProductsListAdapter.getProductsListAdapter(this, filteredProducts,this);
     }
 
     @Override
@@ -134,35 +167,56 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_search:
-//                TODO search functionality
-                return true;
-        }
+    private void openSearchDialog(Bundle bundle){
+        SearchDialogFragment searchDialogFragment = SearchDialogFragment.newInstance();
+        searchDialogFragment.setArguments(bundle);
+        searchDialogFragment.setOptionPriceSelectListener(this);
+        searchDialogFragment.show(getFragmentManager(), SearchDialogFragment.TAG);
+    }
 
-        return false;
+    @OnClick(R.id.linear_wrapper_price)
+    public void searchPriceClick(){
+        Bundle bundle = new Bundle();
+        bundle.putString(SearchDialogFragment.BUNDLE_SEARCH_OPTION, SearchDialogFragment.SEARCH_PRICE);
+
+        bundle.putStringArrayList(SearchDialogFragment.BUNDLE_PRICES, productListPresenter.getPrices());
+        openSearchDialog(bundle);
+    }
+
+    @Override
+    public void onPriceSelected(String price) {
+        tvSearchPrice.setText(price);
+        productsFilter.setPrice(price);
+
+        productListPresenter.filterProductsAdapter(productsAdapter, allProducts, productsFilter);
+    }
+
+    @Override
+    public void onProductItemClicked(Product product) {
+//        TODO Open DialogFragment of Product details
+        Log.d("Click", product.getName());
     }
 
     @Override
     public void showProgress() {
-
+        swipeRefresh.setRefreshing(true);
     }
 
     @Override
     public void hideProgress() {
-
+        swipeRefresh.setRefreshing(false);
     }
 
     @Override
     public void onSuccessListProducts(ArrayList<Product> products) {
-
+        allProducts = products;
+        productsAdapter = InjectionProductsListAdapter.getProductsListAdapter(this, allProducts,this);
+        gridProducts.setAdapter(productsAdapter);
     }
 
     @Override
     public void onError(String msg) {
-
+        Snackbar.make(coordinatorLayout, msg, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

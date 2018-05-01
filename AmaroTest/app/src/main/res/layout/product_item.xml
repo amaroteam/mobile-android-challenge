@@ -25,6 +25,8 @@
             android:id="@+id/tv_product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:textSize="@dimen/card_title"

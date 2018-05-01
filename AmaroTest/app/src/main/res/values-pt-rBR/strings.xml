@@ -1,0 +1,10 @@
+<resources>
+    <string name="all">Todos</string>
+    <string name="higher_200">Acima de R$ 200</string>
+
+    <string name="search">Pesquisa</string>
+    <string name="search_product_name">Digite o nome do produto&#8230;</string>
+    <string name="price">Preço</string>
+    <string name="size">Tamanho</string>
+    <string name="product_image_description">Imagem do produto</string>
+</resources>

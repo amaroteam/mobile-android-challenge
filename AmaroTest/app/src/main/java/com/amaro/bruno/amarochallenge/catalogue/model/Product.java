@@ -1,5 +1,8 @@
 package com.amaro.bruno.amarochallenge.catalogue.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -7,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Product {
+public class Product implements Parcelable {
 
     @JsonProperty("name")
     private String name;
@@ -53,13 +56,60 @@ public class Product {
         this.image = image;
     }
 
-    public Product(String name, String style, boolean onSale, String regularPrice, List<Size> sizes){
+    public Product(String name, String style, boolean onSale, String regularPrice, String image, List<Size> sizes){
         this.name = name;
         this.style = style;
         this.onSale = onSale;
         this.regularPrice = regularPrice;
+        this.image = image;
         this.sizes = sizes;
     }
+
+    protected Product(Parcel in) {
+        name = in.readString();
+        style = in.readString();
+        codeColor = in.readString();
+        colorSlug = in.readString();
+        color = in.readString();
+        onSale = in.readByte() != 0;
+        regularPrice = in.readString();
+        actualPrice = in.readString();
+        discountPercent = in.readString();
+        installments = in.readString();
+        image = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(style);
+        dest.writeString(codeColor);
+        dest.writeString(colorSlug);
+        dest.writeString(color);
+        dest.writeByte((byte) (onSale ? 1 : 0));
+        dest.writeString(regularPrice);
+        dest.writeString(actualPrice);
+        dest.writeString(discountPercent);
+        dest.writeString(installments);
+        dest.writeString(image);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -155,5 +205,9 @@ public class Product {
 
     public void setSizes(ArrayList<Size> sizes) {
         this.sizes = sizes;
+    }
+
+    public boolean equals(Object o){
+        return o instanceof Product && ((Product) o).name.toLowerCase().equals(name.toLowerCase());
     }
 }
