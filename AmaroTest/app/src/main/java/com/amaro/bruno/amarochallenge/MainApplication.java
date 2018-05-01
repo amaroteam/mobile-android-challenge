@@ -3,7 +3,7 @@ package com.amaro.bruno.amarochallenge;
 import android.app.Activity;
 import android.app.Application;
 
-import com.amaro.bruno.amarochallenge.catalogue.di.DaggerAppComponent;
+import com.amaro.bruno.amarochallenge.catalogue.products.di.DaggerAppComponent;
 
 import javax.inject.Inject;
 

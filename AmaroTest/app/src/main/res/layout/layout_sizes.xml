@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/view_sizes"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_size_unique"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:textSize="@dimen/size_big"
+        android:textColor="@android:color/black"
+        tools:text="GG"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_size_very_big"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:textSize="@dimen/size_very_big"
+        android:textColor="@android:color/black"
+        tools:text="GG"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_size_big"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:textSize="@dimen/size_big"
+        android:textColor="@android:color/black"
+        tools:text="G"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_size_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:textSize="@dimen/size_medium"
+        android:textColor="@android:color/black"
+        tools:text="M"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_size_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:textSize="@dimen/size_small"
+        android:textColor="@android:color/black"
+        tools:text="P"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_size_very_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:textSize="@dimen/size_very_small"
+        android:textColor="@android:color/black"
+        tools:text="PP"
+        android:visibility="gone"/>
+
+</LinearLayout>

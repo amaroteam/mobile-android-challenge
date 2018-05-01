@@ -12,4 +12,9 @@
     <string name="price">Price</string>
     <string name="size">Size</string>
     <string name="product_image_description">Product image</string>
+
+    <string name="discount_percentage">%s off</string>
+    <string name="sizes">Sizes: </string>
+    <string name="buy">Buy</string>
+
 </resources>
