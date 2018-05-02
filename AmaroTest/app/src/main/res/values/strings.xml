@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">AmaroTest</string>
+    <string translatable="false" name="app_name">AmaroChallenge</string>
+
+    <string name="all">All</string>
+    <string name="below_50">Less than R$ 50</string>
+    <string translatable="false" name="between_50_100">R$ 50 - R$ 100</string>
+    <string translatable="false" name="between_100_200">R$ 100 - R$ 200</string>
+    <string name="higher_200">Higher than R$ 200</string>
+
+    <string name="qty_items">%d items</string>
+    <string name="search">Search</string>
+    <string name="search_product_name">Type the product name&#8230;</string>
+    <string name="price">Price</string>
+    <string name="size">Size</string>
+    <string name="product_image_description">Product image</string>
+
+    <string name="discount_percentage">%s off</string>
+    <string name="sizes">Sizes: </string>
+    <string name="buy">Buy</string>
+
+    <!-- Error handling -->
+    <string name="general_error">An error has occurred</string>
+    <string name="timeout_error">The connection has timed out, try again later</string>
+
 </resources>

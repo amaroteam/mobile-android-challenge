@@ -1,0 +1,20 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="header_title">16sp</dimen>
+    <dimen name="card_title">16sp</dimen>
+    <dimen name="card_text">14sp</dimen>
+    <dimen name="spinner_text">14sp</dimen>
+    <dimen name="button_text">16sp</dimen>
+    <dimen name="snackbar_textsize">16sp</dimen>
+
+    <dimen name="details_prod_name">22sp</dimen>
+    <dimen name="details_price">18sp</dimen>
+    <dimen name="details_installment">14sp</dimen>
+    <dimen name="details_promotion_status">16sp</dimen>
+
+    <dimen name="size_very_big">22sp</dimen>
+    <dimen name="size_big">20sp</dimen>
+    <dimen name="size_medium">18sp</dimen>
+    <dimen name="size_small">16sp</dimen>
+    <dimen name="size_very_small">14sp</dimen>
+</resources>

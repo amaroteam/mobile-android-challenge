@@ -1,0 +1,20 @@
+<resources>
+    <string name="all">Todos</string>
+    <string name="below_50">Abaixo de R$ 50</string>
+    <string name="higher_200">Acima de R$ 200</string>
+    <string name="qty_items">%d itens</string>
+
+    <string name="search">Pesquisa</string>
+    <string name="search_product_name">Digite o nome do produto&#8230;</string>
+    <string name="price">Preço</string>
+    <string name="size">Tamanho</string>
+    <string name="product_image_description">Imagem do produto</string>
+
+    <string name="discount_percentage">%s de desconto</string>
+    <string name="sizes">Tamanhos: </string>
+    <string name="buy">Comprar</string>
+
+    <!-- Error handling -->
+    <string name="general_error">Ocorreu um erro</string>
+    <string name="timeout_error">A conexão expirou, tente novamente</string>
+</resources>
