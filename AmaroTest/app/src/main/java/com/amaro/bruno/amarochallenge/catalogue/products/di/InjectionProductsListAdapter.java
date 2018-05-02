@@ -2,8 +2,8 @@ package com.amaro.bruno.amarochallenge.catalogue.products.di;
 
 import android.content.Context;
 
-import com.amaro.bruno.amarochallenge.catalogue.products.adapter.ProductItemClickListener;
-import com.amaro.bruno.amarochallenge.catalogue.products.adapter.ProductsListAdapter;
+import com.amaro.bruno.amarochallenge.catalogue.products.ui.adapter.ProductItemClickListener;
+import com.amaro.bruno.amarochallenge.catalogue.products.ui.adapter.ProductsListAdapter;
 import com.amaro.bruno.amarochallenge.catalogue.products.model.Product;
 
 import java.util.List;

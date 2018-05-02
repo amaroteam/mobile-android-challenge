@@ -7,12 +7,15 @@ import com.amaro.bruno.amarochallenge.catalogue.products.di.InjectionProductsLis
 import com.amaro.bruno.amarochallenge.catalogue.products.model.Product;
 import com.amaro.bruno.amarochallenge.catalogue.products.presentation.ProductListContract;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.List;
+
+import io.reactivex.schedulers.Schedulers;
 
 public class ProductListPresenterTest {
 
@@ -34,17 +37,17 @@ public class ProductListPresenterTest {
 
     @Test
     public void getProductListTest(){
-        presenter.getProductsList();
+        presenter.getProductsList(Schedulers.trampoline(), Schedulers.trampoline());
     }
 
     @Test
     public void getProductsBySize(){
-        presenter.getProductsBySize(products, "P");
+        Assert.assertEquals(4, presenter.getProductsBySize(products, "P").size());
     }
 
     @Test
     public void getProductsByPriceRange(){
-        presenter.getProductsByPriceRange(products, 100, 200);
+        Assert.assertEquals(6, presenter.getProductsByPriceRange(products, 100, 200).size());
     }
 
 }

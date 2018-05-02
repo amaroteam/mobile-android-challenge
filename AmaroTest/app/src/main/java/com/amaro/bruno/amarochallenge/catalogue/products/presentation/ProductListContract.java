@@ -1,12 +1,14 @@
 package com.amaro.bruno.amarochallenge.catalogue.products.presentation;
 
 import com.amaro.bruno.amarochallenge.BaseView;
-import com.amaro.bruno.amarochallenge.catalogue.products.adapter.ProductsListAdapter;
+import com.amaro.bruno.amarochallenge.catalogue.products.ui.adapter.ProductsListAdapter;
 import com.amaro.bruno.amarochallenge.catalogue.products.model.Product;
 import com.amaro.bruno.amarochallenge.catalogue.products.use_case.ProductsListFilter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Scheduler;
 
 public interface ProductListContract {
 
@@ -15,7 +17,7 @@ public interface ProductListContract {
     }
 
     interface Presenter{
-        void getProductsList();
+        void getProductsList(Scheduler scheduler, Scheduler observer);
         List<String> getSizes(Product product);
         ArrayList<String> getPrices();
         List<Product> getProductsBySize(List<Product> products, String size);

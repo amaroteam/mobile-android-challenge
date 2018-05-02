@@ -17,4 +17,8 @@
     <string name="sizes">Sizes: </string>
     <string name="buy">Buy</string>
 
+    <!-- Error handling -->
+    <string name="general_error">An error has occurred</string>
+    <string name="timeout_error">The connection has timed out, try again later</string>
+
 </resources>

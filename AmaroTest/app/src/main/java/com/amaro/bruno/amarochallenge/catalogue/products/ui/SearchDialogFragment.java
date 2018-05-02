@@ -12,8 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.amaro.bruno.amarochallenge.R;
-import com.amaro.bruno.amarochallenge.catalogue.products.adapter.DialogSearchAdapter;
-import com.amaro.bruno.amarochallenge.catalogue.products.listener.IOptionPriceSelectListener;
+import com.amaro.bruno.amarochallenge.catalogue.products.ui.adapter.DialogSearchAdapter;
+import com.amaro.bruno.amarochallenge.catalogue.products.ui.listener.IOptionPriceSelectListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +58,8 @@ public class SearchDialogFragment extends DialogFragment implements IOptionPrice
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         View view = inflater.inflate(R.layout.dialog_search, null, false);
         unbinder = ButterKnife.bind(this, view);
+
+        setRetainInstance(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerOptions.setLayoutManager(layoutManager);

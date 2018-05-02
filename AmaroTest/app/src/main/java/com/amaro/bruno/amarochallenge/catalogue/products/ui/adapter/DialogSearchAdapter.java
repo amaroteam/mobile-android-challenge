@@ -1,4 +1,4 @@
-package com.amaro.bruno.amarochallenge.catalogue.products.adapter;
+package com.amaro.bruno.amarochallenge.catalogue.products.ui.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.amaro.bruno.amarochallenge.R;
-import com.amaro.bruno.amarochallenge.catalogue.products.listener.IOptionPriceSelectListener;
+import com.amaro.bruno.amarochallenge.catalogue.products.ui.listener.IOptionPriceSelectListener;
 
 import java.util.List;
 

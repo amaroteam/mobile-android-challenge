@@ -1,18 +1,33 @@
 package com.amaro.bruno.amarochallenge.catalogue.products.presentation;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.amaro.bruno.amarochallenge.AppConstants;
 import com.amaro.bruno.amarochallenge.R;
 import com.amaro.bruno.amarochallenge.BasePresenter;
-import com.amaro.bruno.amarochallenge.catalogue.products.adapter.ProductsListAdapter;
+import com.amaro.bruno.amarochallenge.catalogue.products.di.InjectionRestApi;
+import com.amaro.bruno.amarochallenge.catalogue.products.model.ProductList;
+import com.amaro.bruno.amarochallenge.catalogue.products.ui.adapter.ProductsListAdapter;
 import com.amaro.bruno.amarochallenge.catalogue.products.extensions.StringUtils;
 import com.amaro.bruno.amarochallenge.catalogue.products.model.Product;
 import com.amaro.bruno.amarochallenge.catalogue.products.model.Size;
 import com.amaro.bruno.amarochallenge.catalogue.products.use_case.ProductsListFilter;
 
+import java.io.IOException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import retrofit2.Response;
 
 public class ProductListPresenter extends BasePresenter<ProductListContract.View>
         implements ProductListContract.Presenter {
@@ -28,8 +43,57 @@ public class ProductListPresenter extends BasePresenter<ProductListContract.View
     }
 
     @Override
-    public void getProductsList() {
-//        TODO Call the API using RxJava and Retrofit
+    public void getProductsList(Scheduler scheduler, Scheduler observer) {
+        view.showProgress();
+
+        InjectionRestApi.inject()
+                .getProducts()
+                .subscribeOn(scheduler)
+                .observeOn(observer)
+                .subscribe(new Observer<Response<ProductList>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) { }
+
+                    @Override
+                    public void onNext(Response<ProductList> productListResponse) {
+                        if(productListResponse.isSuccessful()){
+                            if(productListResponse.body() != null) {
+                                view.onSuccessListProducts(Objects.requireNonNull(productListResponse.body()).getProducts());
+                            }
+                        }
+                        else{
+                            if(productListResponse.errorBody() != null) {
+                                try {
+                                    Log.d("Error", Objects.requireNonNull(productListResponse.errorBody()).string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            else{
+                                view.onError(context.getString(R.string.general_error));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        view.hideProgress();
+
+                        if(e != null)
+                            Log.e("onError", e.getMessage());
+
+                        if (e instanceof SocketTimeoutException) {
+                            view.onError(context.getString(R.string.timeout_error));
+                        } else {
+                            view.onError(context.getString(R.string.general_error));
+                        }
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        view.hideProgress();
+                    }
+                });
     }
 
     @Override
@@ -78,6 +142,7 @@ public class ProductListPresenter extends BasePresenter<ProductListContract.View
     public List<Product> getProductsByPriceRange(List<Product> products, double initialPrice, double finalPrice){
         if(products != null && products.size() > 0){
             return products.stream()
+                    .filter(Product::isOnSale)
                     .filter(product -> StringUtils.convertCurrencyToDouble(product.getRegularPrice()) >= initialPrice //TODO create an extension function to convert any currency to a double
                                         && StringUtils.convertCurrencyToDouble(product.getRegularPrice()) <= finalPrice)
                     .collect(Collectors.toList());

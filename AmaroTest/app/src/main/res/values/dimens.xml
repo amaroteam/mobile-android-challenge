@@ -5,6 +5,7 @@
     <dimen name="card_text">14sp</dimen>
     <dimen name="spinner_text">14sp</dimen>
     <dimen name="button_text">16sp</dimen>
+    <dimen name="snackbar_textsize">16sp</dimen>
 
     <dimen name="details_prod_name">22sp</dimen>
     <dimen name="details_price">18sp</dimen>

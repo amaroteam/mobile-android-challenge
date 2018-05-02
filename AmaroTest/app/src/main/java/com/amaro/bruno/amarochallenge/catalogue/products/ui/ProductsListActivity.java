@@ -15,17 +15,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.amaro.bruno.amarochallenge.BaseActivity;
+import com.amaro.bruno.amarochallenge.NetworkUtils;
 import com.amaro.bruno.amarochallenge.R;
 import com.amaro.bruno.amarochallenge.catalogue.product_details.ui.ProductDetailsDialogFragment;
-import com.amaro.bruno.amarochallenge.catalogue.products.adapter.ProductItemClickListener;
-import com.amaro.bruno.amarochallenge.catalogue.products.adapter.ProductsListAdapter;
 import com.amaro.bruno.amarochallenge.catalogue.products.di.InjectionProductsListAdapter;
+import com.amaro.bruno.amarochallenge.catalogue.products.extensions.SnackUtils;
 import com.amaro.bruno.amarochallenge.catalogue.products.extensions.ViewUtils;
-import com.amaro.bruno.amarochallenge.catalogue.products.listener.IOptionPriceSelectListener;
-import com.amaro.bruno.amarochallenge.catalogue.products.mock.ProductsMock;
 import com.amaro.bruno.amarochallenge.catalogue.products.model.Product;
 import com.amaro.bruno.amarochallenge.catalogue.products.presentation.ProductListContract;
 import com.amaro.bruno.amarochallenge.catalogue.products.presentation.ProductListPresenter;
+import com.amaro.bruno.amarochallenge.catalogue.products.ui.adapter.ProductItemClickListener;
+import com.amaro.bruno.amarochallenge.catalogue.products.ui.adapter.ProductsListAdapter;
+import com.amaro.bruno.amarochallenge.catalogue.products.ui.listener.IOptionPriceSelectListener;
 import com.amaro.bruno.amarochallenge.catalogue.products.use_case.ProductsListFilter;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
@@ -38,6 +39,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.AndroidInjection;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class ProductsListActivity extends BaseActivity implements ProductListContract.View, ProductItemClickListener, IOptionPriceSelectListener{
 
@@ -47,8 +50,8 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.search_view)
-    MaterialSearchView searchView;
+//    @BindView(R.id.search_view)
+//    MaterialSearchView searchView;
 
     @BindView(R.id.tv_items)
     TextView tvItems;
@@ -68,7 +71,7 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
     @Inject
     ProductListPresenter productListPresenter;
 
-    private List<Product> allProducts;
+    private ArrayList<Product> allProducts;
     private List<Product> filteredProducts;
     private ProductsListFilter productsFilter;
     private ProductsListAdapter productsAdapter;
@@ -84,10 +87,30 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
 
         setup();
 
-        productListPresenter.setContext(this);
-        productListPresenter.getProductsList();
+        if(savedInstanceState != null){
+            allProducts = savedInstanceState.getParcelableArrayList(Product.BUNDLE_LIST);
+            if(allProducts != null) {
+                filteredProducts.clear();
+                filteredProducts.addAll(allProducts);
+            }
+        }
 
-        gridProducts.setAdapter(productsAdapter);
+        productListPresenter.setContext(this);
+
+        if(allProducts != null && allProducts.size() > 0){
+            productsAdapter = InjectionProductsListAdapter.getProductsListAdapter(this, filteredProducts,this);
+            gridProducts.setAdapter(productsAdapter);
+            tvItems.setText(getString(R.string.qty_items, allProducts.size()));
+        }
+        else{
+            if(NetworkUtils.isNetworkAvailable(this)) {
+                productListPresenter.getProductsList(Schedulers.io(), AndroidSchedulers.mainThread());
+            }
+            else{
+                SnackUtils.showSnackbarWithAction(this, coordinatorLayout, "OK", "No network conection, try again later");
+            }
+        }
+
         gridProducts.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) { }
@@ -107,9 +130,12 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
         });
 
         swipeRefresh.setOnRefreshListener(() -> {
-            productListPresenter.getProductsList();
-
-            hideProgress();
+            if(NetworkUtils.isNetworkAvailable(this)) {
+                productListPresenter.getProductsList(Schedulers.io(), AndroidSchedulers.mainThread());
+            }
+            else{
+                SnackUtils.showSnackbarWithAction(this, coordinatorLayout, "OK", "No network conection, try again later");
+            }
         });
     }
 
@@ -117,6 +143,12 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
     protected void onStop() {
         super.onStop();
         productListPresenter.stop();
+    }
+
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        savedInstanceState.putParcelableArrayList(Product.BUNDLE_LIST, allProducts);
+
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override
@@ -129,32 +161,12 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
 
         tvSearchPrice.setPaintFlags(tvSearchPrice.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-        searchView.setVoiceSearch(true);
-        searchView.setHint(getString(R.string.search_product_name));
-        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                productsAdapter.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                productsAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });
+//        searchView.setVoiceSearch(true);
+//        searchView.setHint(getString(R.string.search_product_name));
 
         allProducts = new ArrayList<>();
         filteredProducts = new ArrayList<>();
         productsFilter = new ProductsListFilter();
-
-        allProducts.addAll(ProductsMock.productList());
-        filteredProducts.addAll(allProducts);
-
-        tvItems.setText(getString(R.string.qty_items, allProducts.size()));
-
-        productsAdapter = InjectionProductsListAdapter.getProductsListAdapter(this, filteredProducts,this);
     }
 
     @Override
@@ -162,7 +174,7 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
         getMenuInflater().inflate(R.menu.products_list_menu, menu);
 
         MenuItem item = menu.findItem(R.id.action_search);
-        searchView.setMenuItem(item);
+//        searchView.setMenuItem(item);
 
         return true;
     }
@@ -188,7 +200,7 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
         tvSearchPrice.setText(price);
         productsFilter.setPrice(price);
 
-        productListPresenter.filterProductsAdapter(productsAdapter, allProducts, productsFilter);
+        tvItems.setText(getString(R.string.qty_items, productListPresenter.filterProductsAdapter(productsAdapter, allProducts, productsFilter).size()));
     }
 
     @Override
@@ -214,8 +226,25 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
     @Override
     public void onSuccessListProducts(ArrayList<Product> products) {
         allProducts = products;
-        productsAdapter = InjectionProductsListAdapter.getProductsListAdapter(this, allProducts,this);
+        filteredProducts.addAll(allProducts);
+        productsAdapter = InjectionProductsListAdapter.getProductsListAdapter(this, filteredProducts,this);
         gridProducts.setAdapter(productsAdapter);
+
+        tvItems.setText(getString(R.string.qty_items, allProducts.size()));
+
+//        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                productsAdapter.getFilter().filter(query);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                productsAdapter.getFilter().filter(newText);
+//                return false;
+//            }
+//        });
     }
 
     @Override
@@ -223,12 +252,12 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
         Snackbar.make(coordinatorLayout, msg, Snackbar.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onBackPressed() {
-        if (searchView.isSearchOpen()) {
-            searchView.closeSearch();
-        } else {
-            super.onBackPressed();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (searchView.isSearchOpen()) {
+//            searchView.closeSearch();
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
 }

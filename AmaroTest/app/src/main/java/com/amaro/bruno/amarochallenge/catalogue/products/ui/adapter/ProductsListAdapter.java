@@ -1,4 +1,4 @@
-package com.amaro.bruno.amarochallenge.catalogue.products.adapter;
+package com.amaro.bruno.amarochallenge.catalogue.products.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

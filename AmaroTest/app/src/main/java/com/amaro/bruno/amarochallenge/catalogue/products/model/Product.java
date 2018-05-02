@@ -14,6 +14,8 @@ public class Product implements Parcelable {
 
     public static final String BUNDLE = "product";
 
+    public static final String BUNDLE_LIST = "products";
+
     @JsonProperty("name")
     private String name;
 

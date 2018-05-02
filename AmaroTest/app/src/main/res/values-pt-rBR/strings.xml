@@ -12,4 +12,8 @@
     <string name="discount_percentage">%s de desconto</string>
     <string name="sizes">Tamanhos: </string>
     <string name="buy">Comprar</string>
+
+    <!-- Error handling -->
+    <string name="general_error">Ocorreu um erro</string>
+    <string name="timeout_error">A conexão expirou, tente novamente</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.amaro.bruno.amarochallenge.catalogue.products.listener;
+package com.amaro.bruno.amarochallenge.catalogue.products.ui.listener;
 
 public interface IOptionPriceSelectListener {
 

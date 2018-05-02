@@ -51,6 +51,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-scalars:$scalars_version"
     implementation "com.squareup.retrofit2:converter-jackson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
 
     //RxJava (Reactive Extensions - observer pattern)
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
