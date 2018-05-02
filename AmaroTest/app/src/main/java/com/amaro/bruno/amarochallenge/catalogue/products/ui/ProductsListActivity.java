@@ -50,8 +50,8 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-//    @BindView(R.id.search_view)
-//    MaterialSearchView searchView;
+    @BindView(R.id.search_view)
+    MaterialSearchView searchView;
 
     @BindView(R.id.tv_items)
     TextView tvItems;
@@ -161,8 +161,8 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
 
         tvSearchPrice.setPaintFlags(tvSearchPrice.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-//        searchView.setVoiceSearch(true);
-//        searchView.setHint(getString(R.string.search_product_name));
+        searchView.setVoiceSearch(true);
+        searchView.setHint(getString(R.string.search_product_name));
 
         allProducts = new ArrayList<>();
         filteredProducts = new ArrayList<>();
@@ -174,7 +174,7 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
         getMenuInflater().inflate(R.menu.products_list_menu, menu);
 
         MenuItem item = menu.findItem(R.id.action_search);
-//        searchView.setMenuItem(item);
+        searchView.setMenuItem(item);
 
         return true;
     }
@@ -232,19 +232,19 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
 
         tvItems.setText(getString(R.string.qty_items, allProducts.size()));
 
-//        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                productsAdapter.getFilter().filter(query);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                productsAdapter.getFilter().filter(newText);
-//                return false;
-//            }
-//        });
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                productsAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                productsAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     @Override
@@ -252,12 +252,12 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
         Snackbar.make(coordinatorLayout, msg, Snackbar.LENGTH_LONG).show();
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        if (searchView.isSearchOpen()) {
-//            searchView.closeSearch();
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
+    @Override
+    public void onBackPressed() {
+        if (searchView.isSearchOpen()) {
+            searchView.closeSearch();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
