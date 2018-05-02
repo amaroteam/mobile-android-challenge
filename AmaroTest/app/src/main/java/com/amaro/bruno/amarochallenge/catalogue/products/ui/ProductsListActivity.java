@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AbsListView;
+import android.widget.Filterable;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -89,6 +90,7 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
 
         if(savedInstanceState != null){
             allProducts = savedInstanceState.getParcelableArrayList(Product.BUNDLE_LIST);
+            productsFilter = savedInstanceState.getParcelable(ProductsListFilter.BUNDLE);
             if(allProducts != null) {
                 filteredProducts.clear();
                 filteredProducts.addAll(allProducts);
@@ -101,6 +103,14 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
             productsAdapter = InjectionProductsListAdapter.getProductsListAdapter(this, filteredProducts,this);
             gridProducts.setAdapter(productsAdapter);
             tvItems.setText(getString(R.string.qty_items, allProducts.size()));
+
+            if(productsFilter.getPrice() != null) {
+                tvSearchPrice.setText(productsFilter.getPrice());
+
+                tvItems.setText(getString(R.string.qty_items, productListPresenter.filterProductsAdapter(productsAdapter, allProducts, productsFilter).size()));
+            }
+
+            searchView.setOnQueryTextListener(MaterialSearchViewHelper.getQueryTextListener(productsAdapter));
         }
         else{
             if(NetworkUtils.isNetworkAvailable(this)) {
@@ -147,6 +157,7 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
 
     public void onSaveInstanceState(Bundle savedInstanceState){
         savedInstanceState.putParcelableArrayList(Product.BUNDLE_LIST, allProducts);
+        savedInstanceState.putParcelable(ProductsListFilter.BUNDLE, productsFilter);
 
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -238,19 +249,7 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
             tvItems.setText(getString(R.string.qty_items, productListPresenter.filterProductsAdapter(productsAdapter, allProducts, productsFilter).size()));
         }
 
-        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                productsAdapter.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                productsAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });
+        searchView.setOnQueryTextListener(MaterialSearchViewHelper.getQueryTextListener(productsAdapter));
     }
 
     @Override
