@@ -111,6 +111,7 @@ public class ProductListPresenter extends BasePresenter<ProductListContract.View
         ArrayList<String> prices = new ArrayList<>();
 
         prices.add(context.getString(R.string.all));
+        prices.add(context.getString(R.string.below_50));
         prices.add(context.getString(R.string.between_50_100));
         prices.add(context.getString(R.string.between_100_200));
         prices.add(context.getString(R.string.higher_200));
@@ -139,11 +140,24 @@ public class ProductListPresenter extends BasePresenter<ProductListContract.View
     }
 
     @Override
+    public List<Product> getProductsLessThan(List<Product> products, double val){
+        if(products != null && products.size() > 0){
+            return products.stream()
+                    .filter(product -> (product.getActualPrice() != null && StringUtils.convertCurrencyToDouble(product.getActualPrice()) < val) || (product.getActualPrice() == null && StringUtils.convertCurrencyToDouble(product.getRegularPrice()) < val))
+                    .collect(Collectors.toList());
+        }
+
+        return null;
+    }
+
+    @Override
     public List<Product> getProductsByPriceRange(List<Product> products, double initialPrice, double finalPrice){
         if(products != null && products.size() > 0){
             return products.stream()
                     .filter(Product::isOnSale)
-                    .filter(product -> StringUtils.convertCurrencyToDouble(product.getRegularPrice()) >= initialPrice //TODO create an extension function to convert any currency to a double
+                    .filter(product -> ((product.getActualPrice() != null && StringUtils.convertCurrencyToDouble(product.getActualPrice()) >= initialPrice) &&
+                                        (product.getActualPrice() != null && StringUtils.convertCurrencyToDouble(product.getActualPrice()) <= finalPrice)) ||
+                                        product.getActualPrice() == null && StringUtils.convertCurrencyToDouble(product.getRegularPrice()) >= initialPrice
                                         && StringUtils.convertCurrencyToDouble(product.getRegularPrice()) <= finalPrice)
                     .collect(Collectors.toList());
         }
@@ -155,7 +169,7 @@ public class ProductListPresenter extends BasePresenter<ProductListContract.View
     public List<Product> getProductsHigherThan(List<Product> products, double val){
         if(products != null && products.size() > 0){
             return products.stream()
-                    .filter(product -> StringUtils.convertCurrencyToDouble(product.getRegularPrice()) > val)
+                    .filter(product -> (product.getActualPrice() != null && StringUtils.convertCurrencyToDouble(product.getActualPrice()) > val) || (product.getActualPrice() == null && StringUtils.convertCurrencyToDouble(product.getRegularPrice()) > val))
                     .collect(Collectors.toList());
         }
 
@@ -168,6 +182,10 @@ public class ProductListPresenter extends BasePresenter<ProductListContract.View
         if(filter.getPrice() == null || context.getString(R.string.all).equals(filter.getPrice())){
             productsAdapter.replaceAll(allProducts);
             return allProducts;
+        }
+
+        if(context.getString(R.string.below_50).equals(filter.getPrice())){
+            filtered = getProductsLessThan(allProducts, 50);
         }
 
         if(context.getString(R.string.between_50_100).equals(filter.getPrice())){

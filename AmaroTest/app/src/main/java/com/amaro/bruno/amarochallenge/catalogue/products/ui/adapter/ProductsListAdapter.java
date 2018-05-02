@@ -92,7 +92,13 @@ public class ProductsListAdapter extends BaseAdapter implements Filterable {
                 .into(viewHolder.imgProduct);
 
         viewHolder.tvProductName.setText(product.getName());
-        viewHolder.tvPrice.setText(product.getRegularPrice());
+
+        if(product.getActualPrice() != null){
+            viewHolder.tvPrice.setText(product.getActualPrice());
+        }
+        else{
+            viewHolder.tvPrice.setText(product.getRegularPrice());
+        }
 
         return view;
     }

@@ -1,5 +1,6 @@
 <resources>
     <string name="all">Todos</string>
+    <string name="below_50">Abaixo de R$ 50</string>
     <string name="higher_200">Acima de R$ 200</string>
     <string name="qty_items">%d itens</string>
 

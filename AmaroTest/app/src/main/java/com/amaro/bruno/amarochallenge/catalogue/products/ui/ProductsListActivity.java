@@ -226,11 +226,17 @@ public class ProductsListActivity extends BaseActivity implements ProductListCon
     @Override
     public void onSuccessListProducts(ArrayList<Product> products) {
         allProducts = products;
+        filteredProducts.clear();
         filteredProducts.addAll(allProducts);
         productsAdapter = InjectionProductsListAdapter.getProductsListAdapter(this, filteredProducts,this);
         gridProducts.setAdapter(productsAdapter);
 
-        tvItems.setText(getString(R.string.qty_items, allProducts.size()));
+        if(getString(R.string.all).equals(tvSearchPrice.getText().toString())) {
+            tvItems.setText(getString(R.string.qty_items, allProducts.size()));
+        }
+        else{
+            tvItems.setText(getString(R.string.qty_items, productListPresenter.filterProductsAdapter(productsAdapter, allProducts, productsFilter).size()));
+        }
 
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override

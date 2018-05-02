@@ -21,6 +21,7 @@ public interface ProductListContract {
         List<String> getSizes(Product product);
         ArrayList<String> getPrices();
         List<Product> getProductsBySize(List<Product> products, String size);
+        List<Product> getProductsLessThan(List<Product> products, double val);
         List<Product> getProductsByPriceRange(List<Product> products, double initialPrice, double finalPrice);
         List<Product> getProductsHigherThan(List<Product> products, double val);
         List<Product> filterProductsAdapter(ProductsListAdapter productsAdapter, List<Product> allProducts, ProductsListFilter filter);
