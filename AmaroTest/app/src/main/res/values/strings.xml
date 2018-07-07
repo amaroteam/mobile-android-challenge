@@ -1,10 +1,4 @@
 <resources>
   <string name="app_name">AmaroTest</string>
   <string name="title_activity_main">MainActivity</string>
-  <string name="titulo_do_pull_request">Titulo do pull request</string>
-  <string name="descri_o_do_repositorio_consectetur_adipiscing_elit_sed_orci_purus_aliquet_in_magna_at_vehicula_elementum_mi">Descrição do repositorio consectetur adipiscing elit. Sed orci purus, aliquet in magna at, vehicula elementum mi...</string>
-  <string name="username">Username</string>
-  <string name="author_name">author name</string>
-  <string name="creation_date">Creation date:</string>
-  <string name="_10_02_2014">10/02/2014</string>
 </resources>

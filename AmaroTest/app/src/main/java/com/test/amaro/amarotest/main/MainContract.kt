@@ -1,4 +1,4 @@
-package com.dpedroza.desafio.ui.main
+package com.test.amaro.amarotest.main
 
 import com.test.amaro.amarotest.core.BaseMvpPresenter
 import com.test.amaro.amarotest.core.MvpView

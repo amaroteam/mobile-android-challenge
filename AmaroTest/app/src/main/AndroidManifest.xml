@@ -25,6 +25,14 @@
       </intent-filter>
     </activity>
     <activity android:name=".core.BaseActivity"/>
+    <activity
+      android:name=".detail.DetailActivity"
+      android:parentActivityName=".main.MainActivity"
+      android:theme="@style/AppTheme.NoActionBar">
+      <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value="com.test.amaro.amarotest.main.MainActivity"/>
+    </activity>
   </application>
 
 </manifest>

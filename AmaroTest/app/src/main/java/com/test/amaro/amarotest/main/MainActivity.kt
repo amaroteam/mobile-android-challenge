@@ -1,15 +1,14 @@
 package com.test.amaro.amarotest.main
 
-import android.graphics.Color
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.widget.LinearLayoutManager
-import com.dpedroza.desafio.ui.main.MainContract
+import android.support.v7.widget.GridLayoutManager
 import com.test.amaro.amarotest.R
 import com.test.amaro.amarotest.core.BaseActivity
+import com.test.amaro.amarotest.detail.DetailActivity
 import com.test.amaro.amarotest.models.Product
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainContract.View {
@@ -22,7 +21,6 @@ class MainActivity : BaseActivity(), MainContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupDagger()
-        setupToolbar()
         setupPresenter()
         setupRecyclerView()
     }
@@ -42,18 +40,13 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     private fun setupRecyclerView() {
-        best_sellers_recycler_view.layoutManager = LinearLayoutManager(this)
+        best_sellers_recycler_view.layoutManager = GridLayoutManager(this, 2)
         best_sellers_recycler_view.adapter = adapter
     }
 
     private fun setupPresenter() {
         presenter.attachView(this)
         presenter.getProducts()
-    }
-
-    private fun setupToolbar() {
-        toolbar.title = "Amaro"
-        toolbar.setTitleTextColor(Color.WHITE)
     }
 
     override fun showProducts(products: List<Product>) {
@@ -79,11 +72,9 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     private fun onProductClick(item: Product): Unit {
-//        val intent = Intent(this, DetailActivity::class.java)
-//        intent.putExtra("full_name", item.fullName)
-//        intent.putExtra("owner_login", item.owner.login)
-//        intent.putExtra("repository_name", item.name)
-//        startActivity(intent)
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("product", item)
+        startActivity(intent)
     }
 
 }

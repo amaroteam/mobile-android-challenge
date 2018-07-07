@@ -1,6 +1,5 @@
 package com.test.amaro.amarotest.main
 
-import com.dpedroza.desafio.ui.main.MainContract
 import com.test.amaro.amarotest.data.repository.ProductRepository
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject

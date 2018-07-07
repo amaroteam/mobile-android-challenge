@@ -7,7 +7,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.test.amaro.amarotesta"
+        applicationId "com.test.amaro.amarotest"
         minSdkVersion 14
         targetSdkVersion 27
         versionCode 1
@@ -51,6 +51,7 @@ dependencies {
 
     //Dagger
     compile "com.google.dagger:dagger:$DAGGER_VERSION"
+    compile 'com.android.support.constraint:constraint-layout:1.1.2'
     kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
