@@ -2,12 +2,15 @@
 package com.test.amaro.amarotest.models;
 
 import android.os.Parcel;
+import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Product implements android.os.Parcelable {
+public class Product implements Parcelable {
+
+    public static final String TAG = Product.class.getSimpleName();
 
     @SerializedName("name")
     @Expose

@@ -16,7 +16,7 @@
     tools:ignore="AllowBackup,GoogleAppIndexingWarning">
     <activity
       android:label="@string/title_activity_main"
-      android:name=".main.MainActivity"
+      android:name=".presentation.main.MainActivity"
       android:theme="@style/AppTheme.NoActionBar">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -24,14 +24,14 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name=".core.BaseActivity"/>
+    <activity android:name=".presentation.core.BaseActivity"/>
     <activity
-      android:name=".detail.DetailActivity"
-      android:parentActivityName=".main.MainActivity"
+      android:name=".presentation.detail.DetailActivity"
+      android:parentActivityName=".presentation.main.MainActivity"
       android:theme="@style/AppTheme.NoActionBar">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value="com.test.amaro.amarotest.main.MainActivity"/>
+        android:value=".presentation.main.MainActivity"/>
     </activity>
   </application>
 

@@ -1,7 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 27
@@ -52,16 +49,12 @@ dependencies {
     //Dagger
     compile "com.google.dagger:dagger:$DAGGER_VERSION"
     compile 'com.android.support.constraint:constraint-layout:1.1.2'
-    kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    annotationProcessor "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
     provided 'org.glassfish:javax.annotation:10.0-b28'
-
-    //Kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     //RxJava
     compile "io.reactivex.rxjava2:rxjava:$RX_JAVA_VERSION"
     compile "io.reactivex.rxjava2:rxandroid:$RX_ANDROID_VERSION"
-    compile 'io.reactivex.rxjava2:rxkotlin:2.0.0'
 
     //Retrofit
     compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'

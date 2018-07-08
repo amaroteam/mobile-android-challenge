@@ -4,16 +4,39 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical"
-  tools:context=".main.MainActivity"
-  >
+  tools:context=".presentation.main.MainActivity">
 
-  <include layout="@layout/toolbar"/>
-
-  <android.support.v7.widget.RecyclerView
-    android:id="@+id/best_sellers_recycler_view"
+  <android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="4dp"
-    />
+    android:layout_height="wrap_content"
+    >
+
+    <android.support.v7.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:background="?attr/colorPrimary"
+      android:weightSum="1"
+      app:title="@string/app_name"
+      >
+
+    </android.support.v7.widget.Toolbar>
+
+  </android.support.design.widget.AppBarLayout>
+
+  <android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swiperefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/best_sellers_recycler_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
+
+  </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>
