@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:padding="@dimen/tile_padding"
+  android:background="?android:attr/selectableItemBackground">
+
+  <TextView
+    android:id="@+id/txt_size"
+    style="@style/ItemSizeStyle"
+    android:layout_width="64dp"
+    android:layout_height="64dp"
+    android:layout_gravity="center"
+    android:padding="4dp"
+    android:gravity="center"
+    android:textSize="24sp"
+    tools:text="M"/>
+</FrameLayout>

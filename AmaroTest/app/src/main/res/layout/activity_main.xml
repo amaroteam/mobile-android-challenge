@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  tools:context=".presentation.main.MainActivity">
+
+  <android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <android.support.v7.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:background="?attr/colorPrimary"
+      android:weightSum="1"
+      app:title="@string/app_name"
+      >
+
+      <ImageButton
+        android:id="@+id/icon_filter"
+        android:layout_width="48dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="end"
+        android:layout_margin="2dp"
+        android:background="?attr/selectableItemBackground"
+        app:srcCompat="@drawable/ic_filter_list_black_24dp"/>
+
+    </android.support.v7.widget.Toolbar>
+
+  </android.support.design.widget.AppBarLayout>
+
+  <android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swiperefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/best_sellers_recycler_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
+
+  </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

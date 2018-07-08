@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  style="@style/Theme.AppCompat.NoActionBar"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:background="@android:color/white"
+  android:gravity="top"
+  android:minHeight="320dp"
+  android:minWidth="400dp"
+  android:orientation="vertical">
+
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/lbl_filter"
+      android:textStyle="bold"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/default_margin"
+      android:text="Filtrar por:"
+      android:textSize="32sp"/>
+
+
+    <RadioGroup
+      android:id="@+id/radioGroup"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="8dp"
+      >
+
+      <RadioButton
+        android:id="@+id/aleatory_price_ordering_radio_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Aleatório"/>
+
+      <RadioButton
+        android:id="@+id/low_price_ordering_radio_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menor Preço"/>
+
+      <RadioButton
+        android:id="@+id/high_price_ordering_radio_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maior Preço"/>
+
+    </RadioGroup>
+
+    <TextView
+      android:id="@+id/lbl_price"
+      android:textStyle="bold"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/default_margin"
+      android:text="Promoções:"
+      android:textSize="32sp"/>
+
+    <CheckBox
+      android:id="@+id/promotion_checkBox"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="8dp"
+      android:gravity="center"
+      android:text="Mostrar somente promoções"/>
+
+  </LinearLayout>
+
+</LinearLayout>

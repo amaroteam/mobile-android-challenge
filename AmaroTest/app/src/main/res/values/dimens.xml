@@ -1,0 +1,22 @@
+<resources>
+
+  <!-- Defaults -->
+
+  <dimen name="default_margin">16dp</dimen>
+  <dimen name="activity_horizontal_margin">16dp</dimen>
+  <dimen name="activity_vertical_margin">16dp</dimen>
+
+  <!-- MainActivity -->
+
+  <dimen name="app_bar_height">346dp</dimen>
+  <dimen name="card_height">304dp</dimen>
+  <dimen name="tile_padding">8dp</dimen>
+  <dimen name="tile_height">160dp</dimen>
+
+  <!-- DetailActivity -->
+
+  <dimen name="navheader_height">222dp</dimen>
+  <dimen name="article_keylines">72dp</dimen>
+  <dimen name="titles_text_size">20sp</dimen>
+  <dimen name="card_image_height">200dp</dimen>
+</resources>
