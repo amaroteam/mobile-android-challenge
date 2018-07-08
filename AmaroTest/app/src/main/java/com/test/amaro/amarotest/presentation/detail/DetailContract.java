@@ -1,9 +1,9 @@
 package com.test.amaro.amarotest.presentation.detail;
 
-import com.test.amaro.amarotest.presentation.core.BaseMvpPresenter;
-import com.test.amaro.amarotest.presentation.core.MvpView;
 import com.test.amaro.amarotest.models.Product;
 import com.test.amaro.amarotest.models.Size;
+import com.test.amaro.amarotest.presentation.core.BaseMvpPresenter;
+import com.test.amaro.amarotest.presentation.core.MvpView;
 import java.util.List;
 
 public interface DetailContract {

@@ -7,7 +7,7 @@
   <string name="product_image">Product Image</string>
 
   <!-- MainActivity -->
-  <string name="title_activity_main">MainActivity</string>
+  <string name="title_activity_main">Amaro</string>
   <string name="retry_text">Tentar Novamente</string>
   <string name="error_message">Ocorreu um erro, por favor tente novamente.</string>
 
@@ -18,4 +18,9 @@
   <string name="promotional_price_template">De %1$s por apenas %2$s</string>
   <string name="installment">Ou em até</string>
   <string name="promotional_price">Preço Promocional</string>
+  <string name="ic_filter_icon_description">List Filter</string>
+
+  <!-- FilterDialogFragment -->
+  <string name="updated_filters">Filtros Atualizados</string>
+
 </resources>

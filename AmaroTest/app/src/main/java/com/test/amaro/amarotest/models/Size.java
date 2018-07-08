@@ -12,7 +12,7 @@ public class Size implements android.os.Parcelable {
     private Boolean available;
     @SerializedName("size")
     @Expose
-    private String size;
+    private String productSize;
     @SerializedName("sku")
     @Expose
     private String sku;
@@ -26,19 +26,11 @@ public class Size implements android.os.Parcelable {
     }
 
     public String getSize() {
-        return size;
+        return productSize;
     }
 
     public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getSku() {
-        return sku;
-    }
-
-    public void setSku(String sku) {
-        this.sku = sku;
+        this.productSize = size;
     }
 
     @Override
@@ -49,16 +41,13 @@ public class Size implements android.os.Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(this.available);
-        dest.writeString(this.size);
+        dest.writeString(this.productSize);
         dest.writeString(this.sku);
     }
 
-    public Size() {
-    }
-
-    protected Size(Parcel in) {
+    private Size(Parcel in) {
         this.available = (Boolean) in.readValue(Boolean.class.getClassLoader());
-        this.size = in.readString();
+        this.productSize = in.readString();
         this.sku = in.readString();
     }
 

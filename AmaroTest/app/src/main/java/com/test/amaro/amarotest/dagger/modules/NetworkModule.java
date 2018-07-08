@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.test.amaro.amarotest.AmaroApplication;
+import com.test.amaro.amarotest.BuildConfig;
 import com.test.amaro.amarotest.data.ProductService;
 import dagger.Module;
 import dagger.Provides;
@@ -18,8 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public final class NetworkModule {
-
-    private final String BASE_URL = "http://www.mocky.io";
 
     @Provides
     @Singleton
@@ -50,7 +49,7 @@ public final class NetworkModule {
     @Singleton
     public final Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl(this.BASE_URL)
+                .baseUrl(BuildConfig.BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient).build();

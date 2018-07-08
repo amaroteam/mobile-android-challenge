@@ -1,6 +1,6 @@
 package com.test.amaro.amarotest.presentation.main;
 
-import com.test.amaro.amarotest.data.repository.ProductRepository;
+import com.test.amaro.amarotest.data.usecases.ProductUseCase;
 import com.test.amaro.amarotest.models.Product;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -9,14 +9,18 @@ import javax.inject.Inject;
 
 public final class MainPresenter extends MainContract.Presenter {
 
-    private ProductRepository amaroRepository;
+    private ProductUseCase productUseCase;
+
+    @Inject
+    public MainPresenter(ProductUseCase productUseCase) {
+        this.productUseCase = productUseCase;
+    }
 
     public void loadProducts() {
 
         this.getView().onLoadStarted();
 
-        amaroRepository
-                .loadProducts()
+        productUseCase.loadProducts()
                 .subscribe(new Observer<List<Product>>() {
                     @Override
                     public void onSubscribe(Disposable disposable) {
@@ -41,8 +45,4 @@ public final class MainPresenter extends MainContract.Presenter {
                 });
     }
 
-    @Inject
-    public MainPresenter(ProductRepository amaroRepository) {
-        this.amaroRepository = amaroRepository;
-    }
 }

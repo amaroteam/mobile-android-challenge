@@ -65,22 +65,6 @@ public class Product implements Parcelable {
         this.style = style;
     }
 
-    public String getCodeColor() {
-        return codeColor;
-    }
-
-    public void setCodeColor(String codeColor) {
-        this.codeColor = codeColor;
-    }
-
-    public String getColorSlug() {
-        return colorSlug;
-    }
-
-    public void setColorSlug(String colorSlug) {
-        this.colorSlug = colorSlug;
-    }
-
     public String getColor() {
         return color;
     }
@@ -89,44 +73,20 @@ public class Product implements Parcelable {
         this.color = color;
     }
 
-    public Boolean getOnSale() {
-        return onSale;
-    }
-
-    public void setOnSale(Boolean onSale) {
-        this.onSale = onSale;
-    }
-
     public String getRegularPrice() {
         return regularPrice;
-    }
-
-    public void setRegularPrice(String regularPrice) {
-        this.regularPrice = regularPrice;
     }
 
     public String getActualPrice() {
         return actualPrice;
     }
 
-    public void setActualPrice(String actualPrice) {
-        this.actualPrice = actualPrice;
-    }
-
     public String getDiscountPercentage() {
         return discountPercentage;
     }
 
-    public void setDiscountPercentage(String discountPercentage) {
-        this.discountPercentage = discountPercentage;
-    }
-
     public String getInstallments() {
         return installments;
-    }
-
-    public void setInstallments(String installments) {
-        this.installments = installments;
     }
 
     public String getImage() {
@@ -196,4 +156,5 @@ public class Product implements Parcelable {
             return new Product[size];
         }
     };
+
 }

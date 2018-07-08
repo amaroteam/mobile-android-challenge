@@ -1,14 +1,15 @@
 package com.test.amaro.amarotest.presentation.main;
 
+import com.test.amaro.amarotest.models.Product;
 import com.test.amaro.amarotest.presentation.core.BaseMvpPresenter;
 import com.test.amaro.amarotest.presentation.core.MvpView;
-import com.test.amaro.amarotest.models.Product;
 import java.util.List;
 
 public interface MainContract {
 
     interface MainView extends MvpView {
-        void retry();
+
+        void reload();
 
         void onLoadStarted();
 
@@ -20,6 +21,7 @@ public interface MainContract {
     }
 
     abstract class Presenter extends BaseMvpPresenter<MainView> {
+
         public abstract void loadProducts();
     }
 }

@@ -1,5 +1,6 @@
 package com.test.amaro.amarotest.presentation.main;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,20 +9,28 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
+import android.widget.Toast;
 import com.test.amaro.amarotest.R;
+import com.test.amaro.amarotest.models.Product;
 import com.test.amaro.amarotest.presentation.core.BaseActivity;
 import com.test.amaro.amarotest.presentation.detail.DetailActivity;
 import com.test.amaro.amarotest.presentation.main.MainContract.MainView;
-import com.test.amaro.amarotest.models.Product;
+import com.test.amaro.amarotest.presentation.main.filter.FilterDialogFragment;
 import java.util.List;
 import javax.inject.Inject;
 
-public final class MainActivity extends BaseActivity implements MainView {
+@SuppressWarnings("all")
+public final class MainActivity extends BaseActivity implements MainView,
+        DialogInterface.OnDismissListener {
 
     @Inject
     MainPresenter presenter;
     private MainAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private FilterDialogFragment filterDialogFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,6 +41,18 @@ public final class MainActivity extends BaseActivity implements MainView {
         this.setupPresenter();
         this.setupAdapter();
         this.setupRecyclerView();
+        this.setupFilter();
+    }
+
+    private void setupFilter() {
+        filterDialogFragment = FilterDialogFragment.newInstance();
+        ImageButton filterImageButton = findViewById(R.id.icon_filter);
+        filterImageButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterDialogFragment.show(getSupportFragmentManager(), FilterDialogFragment.TAG);
+            }
+        });
     }
 
     @Override
@@ -49,13 +70,13 @@ public final class MainActivity extends BaseActivity implements MainView {
         this.swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
-                retry();
+                reload();
             }
         });
     }
 
     private void setupRecyclerView() {
-        RecyclerView bestSellersRecyclerView = findViewById(R.id.best_sellers_recycler_view);
+        final RecyclerView bestSellersRecyclerView = findViewById(R.id.best_sellers_recycler_view);
         bestSellersRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         bestSellersRecyclerView.setAdapter(adapter);
     }
@@ -92,22 +113,32 @@ public final class MainActivity extends BaseActivity implements MainView {
     }
 
     @Override
-    public void retry() {
+    public void reload() {
         this.presenter.loadProducts();
     }
 
     @Override
     public void onShowError(final String error) {
-        Snackbar.make(findViewById(android.R.id.content), getString(R.string.error_message), Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(findViewById(android.R.id.content), getString(R.string.error_message),
+                Snackbar.LENGTH_INDEFINITE)
                 .setAction(this.getString(R.string.retry_text),
                         new android.view.View.OnClickListener() {
                             public final void onClick(android.view.View it) {
-                                MainActivity.this.retry();
+                                MainActivity.this.reload();
                             }
                         }).show();
     }
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        if (filterDialogFragment.hasPreferencesUpdated()) {
+            Toast.makeText(this, R.string.updated_filters, Toast.LENGTH_SHORT).show();
+            reload();
+        }
+    }
+
     public interface OnProductClickListener {
+
         void onProductClick(final Product product);
     }
 

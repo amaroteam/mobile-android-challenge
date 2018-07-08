@@ -14,7 +14,7 @@ public final class DetailAdapter extends Adapter<DetailAdapter.ProductSizeViewHo
     private final List<Size> sizes;
 
     public ProductSizeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.size, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_size, parent, false);
         return new ProductSizeViewHolder(view);
     }
 

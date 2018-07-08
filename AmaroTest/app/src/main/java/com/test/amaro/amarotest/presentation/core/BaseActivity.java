@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.test.amaro.amarotest.AmaroApplication;
 import com.test.amaro.amarotest.dagger.components.ActivityComponent;
 
+@SuppressWarnings("all")
 public class BaseActivity extends AppCompatActivity implements MvpView {
 
     private ActivityComponent activityComponent;

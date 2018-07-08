@@ -13,7 +13,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", '" http://www.mocky.io "'
+        }
         release {
+            initWith(buildTypes.debug)
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -49,6 +53,7 @@ dependencies {
     //Dagger
     compile "com.google.dagger:dagger:$DAGGER_VERSION"
     compile 'com.android.support.constraint:constraint-layout:1.1.2'
+    compile 'com.android.support:support-v4:27.1.1'
     annotationProcessor "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
     provided 'org.glassfish:javax.annotation:10.0-b28'
 

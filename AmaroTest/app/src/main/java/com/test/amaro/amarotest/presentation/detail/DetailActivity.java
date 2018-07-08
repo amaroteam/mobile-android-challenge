@@ -2,6 +2,7 @@ package com.test.amaro.amarotest.presentation.detail;
 
 import static android.view.View.GONE;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -20,6 +21,7 @@ import com.test.amaro.amarotest.presentation.detail.DetailContract.DetailView;
 import java.util.List;
 import javax.inject.Inject;
 
+@SuppressWarnings("all")
 public final class DetailActivity extends BaseActivity implements DetailView {
 
     @Inject
@@ -83,17 +85,20 @@ public final class DetailActivity extends BaseActivity implements DetailView {
 
     @Override
     public void showProductImage(final String url) {
+        final Drawable imagePlaceHolderDrawable = ContextCompat
+                .getDrawable(this, R.drawable.ic_account_circle_gray_100dp);
+
         Picasso.with(this)
                 .load(url)
-                .placeholder(R.drawable.ic_account_circle_gray_24dp)
-                .error(R.drawable.ic_cloud_off_grey_50dp)
+                .placeholder(imagePlaceHolderDrawable)
+                .error(R.drawable.ic_cloud_off_grey_100dp)
                 .into(productImageView);
     }
 
     @Override
     public void showProductImageEmptyState() {
         productImageView.setImageDrawable(
-                ContextCompat.getDrawable(this, R.drawable.ic_cloud_off_grey_50dp));
+                ContextCompat.getDrawable(this, R.drawable.ic_cloud_off_grey_100dp));
     }
 
     @Override
