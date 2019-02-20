@@ -74,7 +74,8 @@ Mas não peça para eles resolverem o desafio para você.
 * Utilize os guidelines de [material design](https://getmdl.io/components/index.html).
  
 ## Ponto extra
-* Achou o desafio até aqui fácil? Todos gostamos de código limpo, facilmente compreensível e testável, certo? Então esse é um grande diferencial. Refatore seu código se necessário, e adicione testes unitários onde possível.
+* Achou o desafio até aqui fácil? Todos gostamos de código limpo, facilmente compreensível e testável, certo? Então esse é um grande diferencial. Adicione testes unitários onde possível e, se necessário, refatore seu código.
+* Nos surpreenda e desenvolva parte do código em Kotlin.
 
 ## Critérios de avaliação
 * O código será avaliado considerando: semântica, estruturação e legibilidade.
